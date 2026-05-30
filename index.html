@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<title>sorry for you 💗</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+background: linear-gradient(135deg,#ff4d88,#ff99cc,#ffc0cb);
+font-family:'Quicksand',sans-serif;
+color:white;
+text-align:center;
+overflow:hidden;
+font-weight:600;
+}
+
+/* 🌸 SAKURA */
+.sakura{
+position:fixed;
+top:-50px;
+font-size:30px;
+animation: fall linear infinite;
+opacity:0.8;
+pointer-events:none;
+}
+
+@keyframes fall{
+0%{transform:translateY(0) rotate(0deg);}
+100%{transform:translateY(110vh) rotate(360deg);}
+}
+
+/* SECTION */
+section{
+display:none;
+width:100vw;
+height:100vh;
+padding:40px;
+position:relative;
+}
+
+.active{
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+}
+
+/* TEXT */
+h1{
+font-size:82px;
+font-family:'Great Vibes',cursive;
+font-weight:700;
+text-shadow:0 3px 10px rgba(0,0,0,0.2);
+}
+
+p{
+font-size:36px;
+line-height:1.8;
+font-weight:600;
+text-shadow:0 2px 8px rgba(0,0,0,0.15);
+}
+
+/* BUTTON */
+button{
+font-size:30px;
+padding:16px 35px;
+border:none;
+border-radius:18px;
+background:white;
+color:#ff1493;
+cursor:pointer;
+font-weight:800;
+margin:10px;
+}
+
+.next{
+margin-top:40px;
+font-size:30px;
+font-weight:700;
+text-decoration:underline;
+cursor:pointer;
+}
+
+.counter{
+font-size:65px;
+margin:20px;
+font-weight:800;
+}
+
+/* 💔 NO BUTTON */
+#noBtn{
+position:fixed;
+left:50%;
+top:60%;
+transform:translate(-50%,-50%);
+background:#ff4d6d;
+color:white;
+border-radius:18px;
+z-index:9999;
+transition:0.12s linear;
+}
+
+/* 💗 POPUP */
+#lovePopup{
+display:none;
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+background:rgba(255,255,255,0.95);
+color:#ff1493;
+padding:30px 40px;
+border-radius:20px;
+font-size:32px;
+font-weight:800;
+z-index:99999;
+box-shadow:0 10px 30px rgba(0,0,0,0.2);
+text-align:center;
+}
+</style>
+</head>
+
+<body>
+
+<!-- PIN -->
+<section id="pinSec" class="active">
+<h1>hi buyyaaan 💗</h1>
+<p>masukin pin dulu buy, tahun lahir aku</p>
+
+<input id="pinInput" placeholder="2010">
+<button onclick="checkPin()">unlock</button>
+</section>
+
+<!-- MAIN -->
+<section id="mainSec">
+<h1>sorry 💗</h1>
+<p>aku minta maaf ya sayangcu,
+<p>yang udah sering bikin bt, kecewa sama responku,
+maaf yaa MWAA </p>
+<div class="next" onclick="toQuest()">next →</div>
+</section>
+
+<!-- QUEST -->
+<section id="questSec">
+
+<h1>quest 💗</h1>
+
+<p>kamu maafin aku ga buy?</p>
+
+<button onclick="iyaLove()">iya 💗</button>
+<button id="noBtn">tidak 💔</button>
+
+<p style="margin-top:40px;">jumlah kekesalan ke parid gtg</p>
+<div class="counter" id="anger">0</div>
+<button onclick="addAnger()">klik 💢</button>
+
+<div class="next" onclick="toKiss()">next →</div>
+
+</section>
+
+<!-- KISS -->
+<section id="kissSec">
+<h1>last 💗</h1>
+<p>💋 cium dulu buy 😘</p>
+<div style="font-size:90px;cursor:pointer" onclick="kiss()">💋</div>
+<div class="counter" id="kissCount">0</div>
+</section>
+
+<!-- 💗 POPUP -->
+<div id="lovePopup">
+makasiii sayangggg 💗
+</div>
+
+<!-- MUSIC -->
+<audio id="music" loop>
+<source src="ssstik.io_1780138380446.mp3" type="audio/mp3">
+</audio>
+
+<script>
+let anger=0;
+let kissCount=0;
+
+/* PIN */
+function checkPin(){
+if(document.getElementById("pinInput").value==="2010"){
+
+document.getElementById("pinSec").classList.remove("active");
+document.getElementById("mainSec").classList.add("active");
+
+document.getElementById("music").play().catch(()=>{});
+
+}else{
+alert("pin salah 💔");
+}
+}
+
+/* NAV */
+function toQuest(){
+document.getElementById("mainSec").classList.remove("active");
+document.getElementById("questSec").classList.add("active");
+}
+
+function toKiss(){
+document.getElementById("questSec").classList.remove("active");
+document.getElementById("kissSec").classList.add("active");
+}
+
+/* COUNTER */
+function addAnger(){
+if(anger<10){
+anger++;
+document.getElementById("anger").innerText=anger;
+}
+}
+
+function kiss(){
+if(kissCount<10){
+kissCount++;
+document.getElementById("kissCount").innerText=kissCount;
+}
+}
+
+/* 💗 IYA POPUP + NEXT */
+function iyaLove(){
+
+let popup=document.getElementById("lovePopup");
+popup.style.display="block";
+
+/* setelah muncul → lanjut */
+setTimeout(()=>{
+popup.style.display="none";
+toKiss();
+},2000);
+}
+
+/* 💔 NO BUTTON EXTREME */
+const noBtn=document.getElementById("noBtn");
+
+function kabur(){
+
+let x=Math.random()*(window.innerWidth-120);
+let y=Math.random()*(window.innerHeight-120);
+
+noBtn.style.left=x+"px";
+noBtn.style.top=y+"px";
+}
+
+noBtn.addEventListener("mouseenter",kabur);
+noBtn.addEventListener("touchstart",kabur);
+noBtn.addEventListener("click",kabur);
+
+/* 🌸 SAKURA */
+function createSakura(){
+const sakura=document.createElement("div");
+sakura.className="sakura";
+sakura.innerHTML="🌸";
+
+sakura.style.left=Math.random()*100+"vw";
+sakura.style.animationDuration=(3+Math.random()*5)+"s";
+sakura.style.fontSize=(20+Math.random()*20)+"px";
+
+document.body.appendChild(sakura);
+
+setTimeout(()=>sakura.remove(),8000);
+}
+
+setInterval(createSakura,200);
+</script>
+
+</body>
+  </html>
