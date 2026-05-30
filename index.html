@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>sorry for you 💗</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+body{
+margin:0;
+padding:0;
+background: linear-gradient(135deg,#ffb6c1,#ff69b4,#ffc0cb);
+font-family:'Quicksand',sans-serif;
+color:white;
+overflow-x:hidden;
+text-align:center;
+}
+
+section{
+display:none;
+height:100vh;
+width:100%;
+padding:40px;
+box-sizing:border-box;
+}
+
+.active{
+display:block;
+}
+
+h1{
+font-size:60px;
+margin-bottom:20px;
+font-family:'Great Vibes',cursive;
+}
+
+p{
+font-size:28px;
+line-height:1.8;
+}
+
+input{
+padding:15px;
+font-size:22px;
+border-radius:10px;
+border:none;
+text-align:center;
+width:200px;
+}
+
+button{
+margin-top:20px;
+padding:15px 30px;
+font-size:22px;
+border:none;
+border-radius:15px;
+background:white;
+color:#ff1493;
+cursor:pointer;
+font-weight:bold;
+}
+
+button:hover{
+transform:scale(1.05);
+}
+
+.next{
+margin-top:40px;
+font-size:26px;
+cursor:pointer;
+text-decoration:underline;
+}
+
+.bigbtn{
+font-size:28px;
+padding:18px 40px;
+}
+
+.counter{
+font-size:40px;
+margin:20px;
+}
+
+.hearts{
+font-size:60px;
+cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<!-- PIN -->
+<section id="pinSec" class="active">
+<h1>hi bulan 💗</h1>
+<p>masukin pin dulu ya...</p>
+<input id="pinInput" placeholder="****">
+<br>
+<button onclick="checkPin()">unlock</button>
+</section>
+
+<!-- MAIN -->
+<section id="mainSec">
+<h1>hii love 💗</h1>
+<p>
+aku mau minta maaf...<br>
+aku sadar aku banyak salah ke kamu<br>
+maafin aku ya? 🥺
+</p>
+
+<div class="next" onclick="toQuest()">next →</div>
+</section>
+
+<!-- QUEST -->
+<section id="questSec">
+<h1>quest 💗</h1>
+
+<p>kamu mau maafin aku ga?</p>
+<button class="bigbtn" onclick="toAnger()">iya 💗</button>
+
+<p style="margin-top:40px;">tingkat kekesalan kamu</p>
+<div class="counter" id="angerCount">0</div>
+<button onclick="addAnger()">klik 💢</button>
+
+<div class="next" onclick="toKiss()">next →</div>
+</section>
+
+<!-- KISS -->
+<section id="kissSec">
+<h1>last 💗</h1>
+
+<p>ciuman kasih sayang 💗</p>
+<div class="hearts" onclick="kiss()">💋</div>
+<div class="counter" id="kissCount">0</div>
+
+</section>
+
+<!-- MUSIC -->
+<audio id="music" loop>
+<source src="ssstik.io_1780138380446.mp3" type="audio/mp3">
+</audio>
+
+<script>
+let anger = 0;
+let kissCount = 0;
+
+// PIN CHECK
+function checkPin(){
+let pin = document.getElementById("pinInput").value;
+if(pin === "2010"){
+document.getElementById("pinSec").classList.remove("active");
+document.getElementById("mainSec").classList.add("active");
+
+// autoplay music (after user interaction)
+let music = document.getElementById("music");
+music.play();
+
+}else{
+alert("pin salah 💔");
+}
+}
+
+function toQuest(){
+document.getElementById("mainSec").classList.remove("active");
+document.getElementById("questSec").classList.add("active");
+}
+
+function toAnger(){
+alert("makasih ya 💗");
+}
+
+function addAnger(){
+if(anger < 10){
+anger++;
+document.getElementById("angerCount").innerText = anger;
+}
+}
+
+function toKiss(){
+document.getElementById("questSec").classList.remove("active");
+document.getElementById("kissSec").classList.add("active");
+}
+
+function kiss(){
+if(kissCount < 10){
+kissCount++;
+document.getElementById("kissCount").innerText = kissCount;
+}
+}
+</script>
+
+</body>
+</html>
